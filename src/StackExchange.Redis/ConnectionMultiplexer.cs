@@ -1199,6 +1199,7 @@ namespace StackExchange.Redis
                         }
                         else
                         {
+                            var isRepeatable = !masterSkip;
                             switch (flags)
                             {
                                 case CommandFlags.DemandMaster:
@@ -1213,7 +1214,7 @@ namespace StackExchange.Redis
                                     masterSkip = true;
                                     break;
                             }
-                            if (masterSkip)
+                            if (masterSkip && isRepeatable)
                             {
                                 repeat = true;
                                 break;
